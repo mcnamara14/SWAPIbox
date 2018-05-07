@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
 import ScrollingText from '../../Stateful/ScrollingText/ScrollingText';
-import Header from '../../Stateful/Header/Header'
+import Header from '../../Stateful/Header/Header';
+import Buttons from '../../Stateless/Buttons/Buttons';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    
+    this.state = {
+      data: null
+    }
+
+    this.setData = this.setData.bind(this);
+  }
+
+  setData = (property) => {
+    console.log(property)
+    fetch(`https://swapi.co/api/${property}`)
+      .then(response => response.json())
+      .then(response => this.setState({data: response}))
+      console.log(this.state.data)
+  };
+
   render() {
     return (
       <div className="App">
         <ScrollingText />
         <Header />
-        <header className="App-header">
-          <img className="App-logo" alt="logo" />
-          <h1 className="App-title">SWAPIbox</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/Components/App/App.js</code> and save to reload.
-        </p>
+        <Buttons setData={this.setData} />
+
       </div>
     );
   }

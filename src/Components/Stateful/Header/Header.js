@@ -12,7 +12,7 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        I'm a header
+        <button className="favorites">View Favorites</button>
       </div>
     );
   };
