@@ -6,8 +6,6 @@ class Buttons extends Component {
     super(props)
   }
 
-
-
   render() {
     return (
       <section className="filterButtons">
