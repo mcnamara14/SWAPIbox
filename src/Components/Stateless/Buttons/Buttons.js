@@ -12,7 +12,7 @@ class Buttons extends Component {
   render() {
     return (
       <section className="filterButtons">
-        <button className="people" onClick={() => dataCleaner.fetchData('people')} >people</button>
+        <button className="people" onClick={() => this.props.setData('people')} >people</button>
         <button className="planets" onClick={() => dataCleaner.fetchData('planets')} >planets</button>
         <button className="vehicles" onClick={() => dataCleaner.fetchData('vehicles')} >vehicles</button>
       </section>

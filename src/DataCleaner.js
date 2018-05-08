@@ -6,7 +6,7 @@ class DataCleaner {
 
     switch(filter) {
       case 'people':
-          this.cleanPeopleData(rawData)
+          return this.cleanPeopleData(rawData)
           break;
       default:
           null
@@ -16,39 +16,23 @@ class DataCleaner {
 
   fetchPeopleData = (people) => {
     const unresolvedPeopleData = people.map(async (person) => {
-      const response = await fetch(person.homeworld);
-      const parsedHomeworld = await response.json();
+      const homeworldResponse = await fetch(person.homeworld);
+      const parsedHomeworld = await homeworldResponse.json();
+      const speciesResponse = await fetch(person.species);
+      const parsedSpecies = await speciesResponse.json();
 
-      return {name: person.name, homeworld: parsedHomeworld.name}
+      return {name: person.name, homeworld: parsedHomeworld.name, species: parsedSpecies.name, population: parsedHomeworld.population}
     });
 
     return Promise.all(unresolvedPeopleData)
   }
 
   cleanPeopleData = async (rawData) => {
-    const people = await this.fetchPeopleData(rawData)
+    const cleanPeopleData = await this.fetchPeopleData(rawData)
+    
+    return cleanPeopleData
   }
 
 }
 
 export default DataCleaner;
-
-
-// fetchBios = (staffMembers) => {
-//   const unresolvedBios = staffMembers.map(async (staffMember) => {
-//     const response = await fetch(staffMember.info);
-//     const parsedData = await response.json();
-//     return {...parsedData, name: staffMember.name}
-//   });
-
-//   return Promise.all(unresolvedBios)
-// }
-
-// componentDidMount = async () => {
-//   const url = "http://localhost:3001/api/frontend-staff"
-//   const response = await fetch(url)
-//   const parsedData = await response.json();
-//   const staff = await this.fetchBios(parsedData.bio)
-
-//   this.setState({ staff })
-// }
