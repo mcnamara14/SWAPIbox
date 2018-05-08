@@ -13,9 +13,9 @@ class ScrollingText extends Component {
   }
     
   componentDidMount = () => {
-    // fetch('https://swapi.co/api/films')
-    //   .then(response => response.json())
-    //   .then(response => this.returnRandomCrawl(response.results))
+    fetch('https://swapi.co/api/films')
+      .then(response => response.json())
+      .then(response => this.returnRandomCrawl(response.results))
   }
 
   returnRandomCrawl = (films) => {
