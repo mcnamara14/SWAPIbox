@@ -10,9 +10,11 @@ class DataCleaner {
           break;
       default:
           null
-  }
+    }
 
   };
+
+
 
   fetchPeopleData = (people) => {
     const unresolvedPeopleData = people.map(async (person) => {
@@ -21,7 +23,8 @@ class DataCleaner {
       const speciesResponse = await fetch(person.species);
       const parsedSpecies = await speciesResponse.json();
 
-      return {name: person.name, homeworld: parsedHomeworld.name, species: parsedSpecies.name, population: parsedHomeworld.population}
+      return {name: person.name, homeworld: parsedHomeworld.name, 
+              species: parsedSpecies.name, population: parsedHomeworld.population}
     });
 
     return Promise.all(unresolvedPeopleData)
