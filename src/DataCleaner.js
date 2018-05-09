@@ -1,8 +1,8 @@
 class DataCleaner {
   fetchData = async (filter) => {
-    const peopleData = await fetch(`https://swapi.co/api/${filter}`)
-    const response = await peopleData.json()
-    const rawData = await response.results
+    const peopleData = await fetch(`https://swapi.co/api/${filter}`);
+    const response = await peopleData.json();
+    const rawData = await response.results;
 
     switch(filter) {
       case 'people':
@@ -14,9 +14,7 @@ class DataCleaner {
 
   };
 
-
-
-  fetchPeopleData = (people) => {
+  cleanPeopleData = async (people) => {
     const unresolvedPeopleData = people.map(async (person) => {
       const homeworldResponse = await fetch(person.homeworld);
       const parsedHomeworld = await homeworldResponse.json();
@@ -27,15 +25,8 @@ class DataCleaner {
               species: parsedSpecies.name, population: parsedHomeworld.population}
     });
 
-    return Promise.all(unresolvedPeopleData)
-  }
-
-  cleanPeopleData = async (rawData) => {
-    const cleanPeopleData = await this.fetchPeopleData(rawData)
-    
-    return cleanPeopleData
-  }
-
+    return await Promise.all(unresolvedPeopleData)
+  };
 }
 
 export default DataCleaner;
