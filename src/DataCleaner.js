@@ -11,6 +11,9 @@ class DataCleaner {
       case 'planets':
           return this.cleanPlanetData(rawData)
           break;
+      case 'vehicles':
+          return this.cleanVehicleData(rawData)
+          break; 
       default:
           null
     }
@@ -50,6 +53,14 @@ class DataCleaner {
     });
 
     return await Promise.all(unresolvedResidents)
+  };
+
+  cleanVehicleData = async (vehicles) => {
+    const unresolvedVehiclesData = vehicles.map(async (vehicle) => {
+      return {name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, numOfPassengers: vehicle.passengers}
+    });
+
+    return await Promise.all(unresolvedVehiclesData)
   };
  
 }
