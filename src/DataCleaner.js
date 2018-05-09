@@ -8,6 +8,9 @@ class DataCleaner {
       case 'people':
           return this.cleanPeopleData(rawData)
           break;
+      case 'planets':
+          return this.cleanPlanetData(rawData)
+          break;
       default:
           null
     }
@@ -27,6 +30,28 @@ class DataCleaner {
 
     return await Promise.all(unresolvedPeopleData)
   };
+
+  cleanPlanetData = async (planets) => {
+    const unresolvedPlanetData = planets.map(async (planet) => {
+    const residentData = await this.cleanResidentsData(planet)
+
+    return {name: planet.name, terrain: planet.terrain, population: planet.population, 
+              climate: planet.climate}
+    });
+
+    return await Promise.all(unresolvedPlanetData)
+  };
+
+  cleanResidentsData = async (planet) => {
+    const unresolvedResidents = planet.residents.map(async (resident) => {
+      const residentsResponse = await fetch(resident);
+      const parsedResidents = await residentsResponse.json();
+      return resident.name
+    });
+
+    return await Promise.all(unresolvedResidents)
+  };
+ 
 }
 
 export default DataCleaner;
