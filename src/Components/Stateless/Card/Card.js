@@ -2,24 +2,23 @@ import React, { Component } from 'react';
 import './Card.css';
 
 const Card = ({ data, filter }) => {
-
- if(filter === 'people') {
+  console.log(data)
+  if(data) {
   return (
-   data.map(data => {
-      return (
-        <article className="card">
-          <h1>{data.name}</h1>
-          <h2>{data.homeworld}</h2>
-          <h2>{data.species}</h2>
-          <h2>{data.population}</h2>
-        </article>
-      )
-    })
-  )
- } else {
-   return null
- }
-
+    data.map((data, index) => {
+      const keys = Object.keys(data);
+        return (
+          <article className="card">
+            <a href="#" className="favorite"></a>
+              { keys.map((key, index) => {
+                 return key === 'name' ? <h2>{data.name}</h2> : <p>{data[key]}</p> 
+                  }
+              )}
+          </article>
+        )
+        }))} else {
+        return null
+      }
 }
 
 export default Card;

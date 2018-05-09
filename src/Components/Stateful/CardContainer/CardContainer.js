@@ -13,7 +13,8 @@ class CardContainer extends Component {
     this.state = {
       filter: null,
       data: null,
-      favorites: []
+      favorites: [], 
+      loading: true
     }
 
     this.setData = this.setData.bind(this);
@@ -25,10 +26,12 @@ class CardContainer extends Component {
   }
     render() {
       return (
-        <article className="CardContainer">
+        <section className="cardContainer">
           <Buttons setData={this.setData} />
-          <Card data={this.state.data} filter={this.state.filter} />
-        </article>
+          <section className="cards">
+            <Card data={this.state.data} filter={this.state.filter} />
+          </section>
+        </section>
     )
   }
 }
