@@ -20,19 +20,43 @@ class CardContainer extends Component {
     this.setData = this.setData.bind(this);
   }
 
-  setData = async (filter) => {
-    const data = await dataCleaner.fetchData(filter)
-    this.setState({ filter, data })
-  }
+    setData = async (filter) => {
+      const data = await dataCleaner.fetchData(filter)
+      this.setState({ filter, data })
+    }
+
+    findCard = (id) => {
+      const selectedCard = this.state.data.find(data => data.id === id)
+      this.changeFavorites(selectedCard)
+    }
+
+    changeFavorites = (selectedCard) => {
+      const currentFavorites = this.state.favorites;
+      currentFavorites.push(selectedCard)
+      this.setState({favorites: currentFavorites})
+    }
+
     render() {
-      return (
-        <section className="cardContainer">
-          <Buttons setData={this.setData} />
-          <section className="cards">
-            <Card data={this.state.data} filter={this.state.filter} />
+      if(this.state.data) {
+        const cards = this.state.data.map((eachData, index) => {
+          return <Card data={eachData} key={index} findCard={this.findCard} />
+        });
+
+        return (
+          <section className="cardContainer">
+            <Buttons setData={this.setData} />
+            <section className="cards">
+              {cards}
+            </section>
           </section>
+        )
+    } else {
+        return (
+          <section className="cardContainer">
+            <Buttons setData={this.setData} />
         </section>
-    )
+        )
+    }
   }
 }
 
