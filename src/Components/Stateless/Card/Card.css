@@ -25,5 +25,5 @@ h3 {
   height: 35px;
   display: block; }
 
-.card.favorite {
-  background: blue; }
+.card.favorite .favoriteIcon {
+  background-image: url("./star-active.png"); }
