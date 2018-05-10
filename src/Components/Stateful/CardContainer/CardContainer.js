@@ -13,6 +13,7 @@ class CardContainer extends Component {
     this.state = {
       filter: null,
       data: null,
+      favoriteCount: 0,
       loading: true
     }
 
@@ -35,10 +36,11 @@ class CardContainer extends Component {
           card.favorite ? card.favorite = false : card.favorite = true
         } 
         return card
-      })
+      });
 
-      console.log(updatedData)
-      this.setState({data: updatedData})
+      const favoriteCount = updatedData.filter(card => card.favorite).length
+
+      this.setState({ data: updatedData, favoriteCount })
     }
 
     render() {
@@ -49,7 +51,7 @@ class CardContainer extends Component {
 
         return (
           <section className="cardContainer">
-            <Buttons setData={this.setData} />
+            <Buttons setData={this.setData} favoriteCount={this.state.favoriteCount} />
             <section className="cards">
               {cards}
             </section>

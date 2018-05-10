@@ -1,21 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Header.css';
 
-class Header extends Component {
-  constructor() {
-    super();
-    this.state = {
-      favorites: 0
-    }
-  }
+const Header = (props) => {
   
-  render() {
     return (
       <div className="header">
-        <button className="favorites">View Favorites</button>
+        <button className="favorites">View Favorites{props.favoriteCount}</button>
       </div>
     );
-  };
 }
 
 export default Header;
