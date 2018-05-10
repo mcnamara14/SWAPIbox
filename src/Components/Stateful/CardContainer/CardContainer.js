@@ -14,15 +14,32 @@ class CardContainer extends Component {
       filter: null,
       data: null,
       favoriteCount: 0,
-      loading: true
+      loading: true,
+      favorites: [], 
+      displayFavorites: false
     }
 
     this.setData = this.setData.bind(this);
   }
 
+    componentDidMount = () => {
+      const filter = JSON.parse(localStorage.getItem('category')).category
+      const data = JSON.parse(localStorage.getItem(filter));
+      
+      this.setState({filter, data})
+    }
+
     setData = async (filter) => {
-      const data = await dataCleaner.fetchData(filter)
-      this.setState({ filter, data })
+      if(localStorage.getItem(filter) === null) {
+        const data = await dataCleaner.fetchData(filter)
+        localStorage.setItem(filter, JSON.stringify(data));
+        localStorage.setItem('category', JSON.stringify({'category': filter}));
+        this.setState({ filter, data })
+      } else {
+        localStorage.setItem('category', JSON.stringify({'category': filter}));
+        const data = JSON.parse(localStorage.getItem(filter));
+        this.setState({filter, data})
+      }
     }
 
     findCard = (id) => {
@@ -37,10 +54,20 @@ class CardContainer extends Component {
         } 
         return card
       });
-
       const favoriteCount = updatedData.filter(card => card.favorite).length
-
+      localStorage.setItem(this.state.filter, JSON.stringify(updatedData));
       this.setState({ data: updatedData, favoriteCount })
+    }
+
+    toggleDisplayFavorites = () => {
+      const updatedDisplayFavorites = this.state.displayFavorites ? false : true;
+      this.setState({ displayFavorites: updatedDisplayFavorites })
+
+      if(this.state.displayFavorites) {
+        const favorites = this.state.data.filter(card => card.favorite);
+
+        this.setState({ data: favorites })
+      } 
     }
 
     render() {
@@ -51,7 +78,7 @@ class CardContainer extends Component {
 
         return (
           <section className="cardContainer">
-            <Buttons setData={this.setData} favoriteCount={this.state.favoriteCount} />
+            <Buttons setData={this.setData} favoriteCount={this.state.favoriteCount} toggleDisplayFavorites={this.toggleDisplayFavorites} />
             <section className="cards">
               {cards}
             </section>
