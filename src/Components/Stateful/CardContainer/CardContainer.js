@@ -13,7 +13,6 @@ class CardContainer extends Component {
     this.state = {
       filter: null,
       data: null,
-      favorites: [], 
       loading: true
     }
 
@@ -31,9 +30,15 @@ class CardContainer extends Component {
     }
 
     changeFavorites = (selectedCard) => {
-      const currentFavorites = this.state.favorites;
-      currentFavorites.push(selectedCard)
-      this.setState({favorites: currentFavorites})
+      const updatedData = this.state.data.map(card => {
+        if(selectedCard.id === card.id) {
+          card.favorite ? card.favorite = false : card.favorite = true
+        } 
+        return card
+      })
+
+      console.log(updatedData)
+      this.setState({data: updatedData})
     }
 
     render() {

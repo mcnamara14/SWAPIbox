@@ -4,12 +4,12 @@ import './Card.css';
 const Card = ({ data, id, findCard }) => {
   const keys = Object.keys(data);
   return (
-    <article className="card">
+    <article className={data.favorite ? "card selected" : "card"}>
       <a href="#" className="favorite" onClick={() => findCard(data.id)}></a>
         { keys.map((key, index) => {
           if (key === 'name') {
             return <h2>{data.name}</h2>
-          } else if (key === 'id'){
+          } else if (key === 'id' || key === 'selected'){
             return null
           } else {
             return <p>{`${key}: ${data[key]}`}</p>

@@ -27,7 +27,7 @@ class DataCleaner {
       const parsedSpecies = await speciesResponse.json();
 
       return {name: person.name, homeworld: parsedHomeworld.name, 
-              species: parsedSpecies.name, population: parsedHomeworld.population, id: `people${index}`}
+              species: parsedSpecies.name, population: parsedHomeworld.population, id: `people${index}`, favorite: false}
     });
 
     return await Promise.all(unresolvedPeopleData)
@@ -38,7 +38,7 @@ class DataCleaner {
     const residentData = await this.cleanResidentsData(planet)
 
     return {name: planet.name, terrain: planet.terrain, population: planet.population, 
-              climate: planet.climate, id: `planets${index}`}
+              climate: planet.climate, id: `planets${index}`, favorite: false}
     });
 
     return await Promise.all(unresolvedPlanetData)
@@ -56,7 +56,7 @@ class DataCleaner {
 
   cleanVehicleData = async (vehicles) => {
     const unresolvedVehiclesData = vehicles.map(async (vehicle, index) => {
-      return {name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers, id: `vehicles${index}`}
+      return {name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers, id: `vehicles${index}`, favorite: false}
     });
 
     return await Promise.all(unresolvedVehiclesData)
