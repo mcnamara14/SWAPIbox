@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Card from '../../Stateless/Card/Card';
 import Buttons from '../../Stateless/Buttons/Buttons';
 import DataCleaner from '../../../DataCleaner';
+import ScrollingText from '../../Stateful/ScrollingText/ScrollingText';
 import './CardContainer.css';
 
 const dataCleaner = new DataCleaner();
@@ -34,7 +35,7 @@ class CardContainer extends Component {
           favorites, 
           favoriteCount
         })
-      }
+      } 
     }
 
     retrieveStorageData = () => {
@@ -97,15 +98,18 @@ class CardContainer extends Component {
           <section className="cardContainer">
             <Buttons setData={this.setData} favoriteCount={this.state.favoriteCount} toggleDisplayFavorites={this.toggleDisplayFavorites} />
             <section className="cards">
-              {cards}
+                <div>
+                {cards}
+                </div>
             </section>
           </section>
         )
     } else {
         return (
-          <section className="cardContainer">
-            <Buttons setData={this.setData} />
-        </section>
+          <div>
+             <Buttons setData={this.setData} favoriteCount={this.state.favoriteCount} toggleDisplayFavorites={this.toggleDisplayFavorites} />
+            <ScrollingText />
+          </div>
         )
     }
   }

@@ -18,10 +18,12 @@ class Buttons extends Component {
   render() {
     return (
       <section className="filterButtons">
-        <button className="people" onClick={() => this.props.setData('people')} >people</button>
-        <button className="planets" onClick={() => this.props.setData('planets')} >planets</button>
-        <button className="vehicles" onClick={() => this.props.setData('vehicles')} >vehicles</button>
-        <button className="favorites" onClick={() => this.handleClick()} >View Favorites{this.props.favoriteCount}</button>
+        <div>
+          <button className="people" onClick={() => this.props.setData('people')} >people</button>
+          <button className="planets" onClick={() => this.props.setData('planets')} >planets</button>
+          <button className="vehicles" onClick={() => this.props.setData('vehicles')} >vehicles</button>
+          <button className="favorites" onClick={() => this.handleClick()} >View Favorites<span>{this.props.favoriteCount}</span></button>
+        </div>
       </section>
     );
   }

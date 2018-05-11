@@ -30,11 +30,18 @@ class ScrollingText extends Component {
 
   render() {
     return (
-      <div className="scrollingText">
+      <section className="scrollingTextContainer">
+      <div id="titles">
+        <div id="titlecontent">
+
         <p>{this.state.crawl}</p>
-        <p>{this.state.title}</p>
-        <p>{this.state.date}</p>
+        <p><span>{this.state.title}</span></p>
+        <p className="scrollYear"><span>{this.state.date}</span></p>
+    
       </div>
+    </div>
+    </section>
+
     );
   };
 }
