@@ -5,7 +5,7 @@ const Header = (props) => {
   
     return (
       <div className="header">
-        <button className="favorites">View Favorites{props.favoriteCount}</button>
+        <img src={require('./logo.png')} height="50px" />
       </div>
     );
 }
