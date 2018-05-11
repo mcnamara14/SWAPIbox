@@ -21,17 +21,34 @@ class DataCleaner {
 
   cleanPeopleData = async (people) => {
     const unresolvedPeopleData = people.map(async (person, index) => {
-      const homeworldResponse = await fetch(person.homeworld);
-      const parsedHomeworld = await homeworldResponse.json();
-      const speciesResponse = await fetch(person.species);
-      const parsedSpecies = await speciesResponse.json();
-
-      return {name: person.name, homeworld: parsedHomeworld.name, 
-              species: parsedSpecies.name, population: parsedHomeworld.population, id: `people${index}`, favorite: false}
+      const homeworldData = await this.cleanHomeworldData(person)
+      const homeworldName = homeworldData.name;
+      const homeworldPopulation = homeworldData.population
+      const species = await this.cleanSpeciesData(person)
+      
+      return {name: person.name, homeworld: homeworldName, 
+              species, population: homeworldPopulation, id: `people${index}`, favorite: false}
     });
 
     return await Promise.all(unresolvedPeopleData)
   };
+
+  cleanHomeworldData = async (person) => {
+    const homeworldResponse = await fetch(person.homeworld);
+    const homeworldData = await homeworldResponse.json();
+    const name = homeworldData.name;
+    const population = homeworldData.population
+
+    return { name, population }
+  }
+
+  cleanSpeciesData = async (person) => {
+    const speciesResponse = await fetch(person.species);
+    const speciesData = await speciesResponse.json();
+    const species = speciesData.name;
+
+    return species
+  }
 
   cleanPlanetData = async (planets) => {
     const unresolvedPlanetData = planets.map(async (planet, index) => {
