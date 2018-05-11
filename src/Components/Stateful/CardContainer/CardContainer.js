@@ -15,7 +15,7 @@ class CardContainer extends Component {
       filter: null,
       data: null,
       loading: true,
-      favorites: [], 
+      favorites: [],
       favoriteCount: 0
     }
 
@@ -23,74 +23,49 @@ class CardContainer extends Component {
     this.setData = this.setData.bind(this);
   }
 
-    componentDidMount = () => {
-      if(localStorage.length) {
-        const retrievedData = this.retrieveStorageData();
-        const { filter, data, favorites } = retrievedData;
-        const favoriteCount = favorites.length
-
-        this.setState({
-          filter, 
-          data, 
-          favorites, 
-          favoriteCount
-        })
-      } 
-    }
-
-    retrieveStorageData = () => {
-      const filter = JSON.parse(localStorage.getItem('category')).category
-      const data = JSON.parse(localStorage.getItem(filter));
-      const favorites = JSON.parse(localStorage.getItem('favorites'));
-      return { filter, data, favorites }
-    }
-
     setData = async (filter) => {
-      if(localStorage.getItem(filter) === null) {
         const data = await dataCleaner.fetchData(filter);
-        localStorage.setItem(filter, JSON.stringify(data));
-        localStorage.setItem('category', JSON.stringify({'category': filter}));
-        this.setState({ filter, data })
-      } else {
-        localStorage.setItem('category', JSON.stringify({'category': filter}));
-        const data = JSON.parse(localStorage.getItem(filter));
-        this.setState({filter, data})
-      }
+ 
+        this.setState({ data })
     }
 
     findCard = (id) => {
-      const selectedCard = this.state.data.find(data => data.id === id)
-      this.changeFavorites(selectedCard)
-    }
+      const selectedCard = this.state.data.find(data => data.id === id);
+      const duplicateFavorite = this.state.favorites.find(favorite => favorite.id === id)
 
-    changeFavorites = (selectedCard) => {
-      const { favorites, data, filter } = this.state;
-      let updatedFavorites = favorites;
-      const duplicateFavorite = favorites.some(favorite => selectedCard.id === favorite.id)
-
-      if(!duplicateFavorite) {
-        favorites.push(selectedCard)
+      if(duplicateFavorite) {
+        this.removeFavorite(selectedCard)
       } else {
-        const index = favorites.indexOf(selectedCard)
-        updatedFavorites.splice(index, 1)
+        this.addFavorite(selectedCard)
       }
-
-      const favoriteCount = updatedFavorites.length;
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-
-      this.setState({ filter: 'favorites', favoriteCount, favorites: updatedFavorites })
     }
+
+    removeFavorite = (selectedCard) => {
+      const favoriteCount = this.state.favoriteCount -= 1;
+      const favorites = this.state.favorites;
+      const index = favorites.findIndex(favorite => favorite.id === selectedCard.id);
+
+      favorites.splice(index, 1)
+
+
+      this.setState({ favorites, favoriteCount })
+    }
+
+    addFavorite = (selectedCard) => {
+      const favoriteCount = this.state.favoriteCount += 1;
+      const favorites = [...this.state.favorites, selectedCard]
+
+      this.setState({ favorites, favoriteCount });
+    };
 
     toggleDisplayFavorites = () => {
-      const { favorites } = this.state;
-      localStorage.setItem('category', JSON.stringify({'category': this.state.filter}));
-      this.setState({ data: favorites })
-    } 
+      this.setState({ data: this.state.favorites })
+    }
 
     render() {
       if(this.state.data) {
         const cards = this.state.data.map((eachData, index) => {
-          const selected = this.state.favorites.some(favorite => favorite.id === eachData.id);
+          const selected = this.state.favorites.find(favorite => favorite.id === eachData.id);
           return <Card data={eachData} key={index} findCard={this.findCard} selected={selected} />
         });
 
