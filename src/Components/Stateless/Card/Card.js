@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './Card.css';
 
-const Card = ({ data, id, findCard }) => {
+const Card = ({ data, id, findCard, selected }) => {
   const keys = Object.keys(data);
   return (
-    <article className={data.favorite ? "card favorite" : "card"}>
+    <article className={selected ? "card favorite" : "card"}>
       <a href="#" className="favoriteIcon" onClick={() => findCard(data.id)}></a>
         { keys.map((key, index) => {
           if (key === 'name') {
