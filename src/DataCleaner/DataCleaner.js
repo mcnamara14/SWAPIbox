@@ -4,39 +4,33 @@ class DataCleaner {
     const response = await fetchedData.json();
     const rawData = response.results;
 
-    console.log(rawData)
-
     switch(filter) {
       case 'people':
           return this.cleanPeopleData(rawData)
-          break;
       case 'planets':
           return this.cleanPlanetData(rawData)
-          break;
       case 'vehicles':
           return this.cleanVehicleData(rawData)
-          break; 
-      default:
-          null
     }
   };
 
   cleanPeopleData = async (people) => {
     const unresolvedPeopleData = people.map(async (person, index) => {
-      const homeworldData = await this.cleanHomeworldData(person)
+      const name = person.name
+      const homeworldData = await this.cleanHomeworldData(person.homeworld);
       const homeworldName = homeworldData.name;
       const homeworldPopulation = homeworldData.population
-      const species = await this.cleanSpeciesData(person)
+      const species = await this.cleanSpeciesData(person.species)
       
       return {name: person.name, homeworld: homeworldName, 
-              species, population: homeworldPopulation, id: `people${index}`, favorite: false}
+              species, population: homeworldPopulation, id: `people${index}`}
     });
 
     return await Promise.all(unresolvedPeopleData)
   };
 
-  cleanHomeworldData = async (person) => {
-    const homeworldResponse = await fetch(person.homeworld);
+  cleanHomeworldData = async (homeworld) => {
+    const homeworldResponse = await fetch(homeworld);
     const homeworldData = await homeworldResponse.json();
     const name = homeworldData.name;
     const population = homeworldData.population
@@ -44,12 +38,12 @@ class DataCleaner {
     return { name, population }
   }
 
-  cleanSpeciesData = async (person) => {
-    const speciesResponse = await fetch(person.species);
+  cleanSpeciesData = async (species) => {
+    const speciesResponse = await fetch(species);
     const speciesData = await speciesResponse.json();
-    const species = speciesData.name;
+    const speciesName = speciesData.name;
 
-    return species
+    return speciesName
   }
 
   cleanPlanetData = async (planets) => {
@@ -57,7 +51,7 @@ class DataCleaner {
     const residentData = await this.cleanResidentsData(planet)
 
     return {name: planet.name, terrain: planet.terrain, population: planet.population, 
-              climate: planet.climate, id: `planets${index}`, favorite: false}
+              climate: planet.climate, id: `planets${index}`}
     });
 
     return await Promise.all(unresolvedPlanetData)
@@ -75,7 +69,7 @@ class DataCleaner {
 
   cleanVehicleData = async (vehicles) => {
     const unresolvedVehiclesData = vehicles.map(async (vehicle, index) => {
-      return {name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers, id: `vehicles${index}`, favorite: false}
+      return {name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers, id: `vehicles${index}`}
     });
 
     return await Promise.all(unresolvedVehiclesData)

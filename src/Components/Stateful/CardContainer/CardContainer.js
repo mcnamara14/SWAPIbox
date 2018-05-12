@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from '../../Stateless/Card/Card';
 import Buttons from '../../Stateless/Buttons/Buttons';
-import DataCleaner from '../../../DataCleaner';
+import DataCleaner from '../../../DataCleaner/DataCleaner';
 import Loading from '../../Stateless/Loading/Loading';
 import ScrollingText from '../../Stateful/ScrollingText/ScrollingText';
 import './CardContainer.css';
@@ -68,6 +68,7 @@ class CardContainer extends Component {
         const selected = this.state.favorites.find(favorite => favorite.id === eachData.id);
         return <Card data={eachData} key={index} findCard={this.findCard} selected={selected} />
        })
+       
        return cards;
     }
 
