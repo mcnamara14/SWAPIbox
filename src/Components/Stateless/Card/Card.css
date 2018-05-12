@@ -12,7 +12,8 @@ h3 {
   color: #ccc; }
 
 .card {
-  background: #222;
+  background: rgba(48, 39, 82, 0.75);
+  border: 2px solid #241c41;
   width: 22%;
   border-radius: 3px;
   padding: 0;
@@ -21,7 +22,8 @@ h3 {
   display: inline-block;
   text-align: left;
   position: relative;
-  height: 330px; }
+  height: 350px;
+  box-shadow: 1px 2px 4px #624385; }
 
 .cardHeader {
   display: flex;
@@ -31,15 +33,15 @@ h3 {
   margin: 0;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  border-bottom: 1px solid #555; }
+  border-bottom: 1px solid #241c41; }
 
 .cardFave {
   width: 29% !important;
   margin: 0 !important;
-  height: 100%;
+  height: 99%;
   display: -ms-flexbox;
   display: flex;
-  background: black;
+  background: #241c41;
   justify-content: center !important;
   -ms-flex-align: center;
   align-items: center;
@@ -65,11 +67,11 @@ h3 {
   background-image: url("./star-active.png"); }
 
 .cardBottom {
-  background-image: url("./bottom-bg.png") !important;
+  background-image: url("./bottom-bg-inactive.jpg") !important;
   background-repeat: no-repeat !important;
-  background-position-x: 30px !important;
+  background-size: cover;
   height: 100px;
-  background: #111;
+  background: #241c41;
   margin: 0 !important;
   position: absolute;
   display: block;
@@ -79,7 +81,7 @@ h3 {
   border-radius: 0 0 3px 3px; }
 
 .card span {
-  color: #1f648b; }
+  color: #fff; }
 
 .favorite .cardBottom {
-  background: #000; }
+  background-image: url("./bottom-bg-active.jpg") !important; }

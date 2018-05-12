@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Data cleaner fetc should match snapshot 1`] = `[Function]`;
+
+exports[`Data cleaner should match snapshot 1`] = `[Function]`;

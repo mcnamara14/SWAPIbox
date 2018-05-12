@@ -1,8 +1,10 @@
 class DataCleaner {
   fetchData = async (filter) => {
-    const peopleData = await fetch(`https://swapi.co/api/${filter}`);
-    const response = await peopleData.json();
-    const rawData = await response.results;
+    const fetchedData = await fetch(`https://swapi.co/api/${filter}`);
+    const response = await fetchedData.json();
+    const rawData = response.results;
+
+    console.log(rawData)
 
     switch(filter) {
       case 'people':
