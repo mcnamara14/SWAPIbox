@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DataCleaner from '../../../DataCleaner'
+import DataCleaner from '../../../DataCleaner/DataCleaner'
 import './Buttons.css';
 
 const dataCleaner = new DataCleaner();
