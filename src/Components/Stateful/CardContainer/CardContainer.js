@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Card from '../../Stateless/Card/Card';
 import Buttons from '../../Stateless/Buttons/Buttons';
 import DataCleaner from '../../../DataCleaner';
+import Loading from '../../Stateless/Loading/Loading';
 import ScrollingText from '../../Stateful/ScrollingText/ScrollingText';
 import './CardContainer.css';
 
@@ -12,9 +13,9 @@ class CardContainer extends Component {
     super();
 
     this.state = {
-      filter: null,
-      data: null,
-      loading: true,
+      filter: '',
+      data: {},
+      renderState: 'crawl',
       favorites: [],
       favoriteCount: 0
     }
@@ -24,9 +25,10 @@ class CardContainer extends Component {
   }
 
     setData = async (filter) => {
-        const data = await dataCleaner.fetchData(filter);
- 
-        this.setState({ data })
+      this.setState({ renderState: 'loading' })
+      const data = await dataCleaner.fetchData(filter);
+
+      this.setState({ data, renderState: 'cards' })
     }
 
     findCard = (id) => {
@@ -47,7 +49,6 @@ class CardContainer extends Component {
 
       favorites.splice(index, 1)
 
-
       this.setState({ favorites, favoriteCount })
     }
 
@@ -62,32 +63,37 @@ class CardContainer extends Component {
       this.setState({ data: this.state.favorites })
     }
 
-    render() {
-      if(this.state.data) {
-        const cards = this.state.data.map((eachData, index) => {
-          const selected = this.state.favorites.find(favorite => favorite.id === eachData.id);
-          return <Card data={eachData} key={index} findCard={this.findCard} selected={selected} />
-        });
-
-        return (
-          <section className="cardContainer">
-            <Buttons setData={this.setData} favoriteCount={this.state.favoriteCount} toggleDisplayFavorites={this.toggleDisplayFavorites} />
-            <section className="cards">
-                <div>
-                {cards}
-                </div>
-            </section>
-          </section>
-        )
-    } else {
-        return (
-          <div>
-             <Buttons setData={this.setData} favoriteCount={this.state.favoriteCount} toggleDisplayFavorites={this.toggleDisplayFavorites} />
-            <ScrollingText />
-          </div>
-        )
+    getCards = () => {
+      const cards = this.state.data.map((eachData, index) => {
+        const selected = this.state.favorites.find(favorite => favorite.id === eachData.id);
+        return <Card data={eachData} key={index} findCard={this.findCard} selected={selected} />
+       })
+       return cards;
     }
-  }
+
+    toggleRender = () => {
+      switch(this.state.renderState) {
+        case 'crawl':
+            return <ScrollingText />
+        case 'cards':
+            return <section className="cards">
+                        <div>
+                          {this.getCards()}
+                        </div>
+                    </section>
+        case 'loading':
+            return <Loading />
+      }
+    }
+
+    render() {
+      return (
+        <section className="cardContainer">
+          <Buttons setData={this.setData} favoriteCount={this.state.favoriteCount} toggleDisplayFavorites={this.toggleDisplayFavorites} />
+          { this.toggleRender() }
+        </section>
+      )
+    }
 }
 
 export default CardContainer;
