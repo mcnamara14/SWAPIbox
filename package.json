@@ -9,7 +9,8 @@
     "react-audio-player": "^0.10.0",
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4",
-    "react-sound": "^1.2.0"
+    "react-sound": "^1.2.0",
+    "react-test-renderer": "^16.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

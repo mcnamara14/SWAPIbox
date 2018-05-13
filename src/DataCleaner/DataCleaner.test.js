@@ -179,7 +179,7 @@ describe('Data cleaner', () => {
 
   describe('cleanPlanetData', () => {
     
-    it('should call cleanResidentsData with correct arg', async () => {
+    it('should call cleanResidentsData with correct argument', async () => {
       dataCleaner.cleanResidentsData = jest.fn() 
       const expected = mockDirtyPlanetData
    
@@ -204,7 +204,7 @@ describe('Data cleaner', () => {
   
   describe('cleanResidentsData', () => {
 
-    it('should call fetch with the correct argument', async () => {
+    it('should call fetch for each resident of a planet', async () => {
       const mockData = mockDirtyPlanetData.results[0]
       const result = dataCleaner.cleanPeopleData = jest.fn();
 
@@ -217,7 +217,7 @@ describe('Data cleaner', () => {
 
   describe('cleanVehicleData', () => {
 
-    it('should call fetch with the correct argument', async () => {
+    it('return an array of objects containing clean data', async () => {
       const mockData = mockDirtyVehicleData.results
       const mockCleanVehicleData = [mockCleanedVehicleData]
 
