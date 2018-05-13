@@ -11,7 +11,7 @@ class DataCleaner {
           return this.cleanPlanetData(rawData)
       case 'vehicles':
           return this.cleanVehicleData(rawData)
-    }
+    };
   };
 
   cleanPeopleData = async (people) => {

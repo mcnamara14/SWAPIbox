@@ -4,7 +4,6 @@ import Buttons from '../../Stateless/Buttons/Buttons';
 import DataCleaner from '../../../DataCleaner/DataCleaner';
 import Loading from '../../Stateless/Loading/Loading';
 import ScrollingText from '../../Stateful/ScrollingText/ScrollingText';
-import Sound from 'react-sound';
 import './CardContainer.css';
 
 const dataCleaner = new DataCleaner();

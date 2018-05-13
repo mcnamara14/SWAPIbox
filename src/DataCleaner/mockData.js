@@ -1,9 +1,9 @@
 export const mockCleanedVehicleData = {
-    class: "repulsorcraft",
-    id: "vehicles2",
-    model: "X-34 landspeeder",
-    name: "X-34 landspeeder",
-    passengers: "1"
+    class: "sail barge",
+    id: "vehicles0",
+    model: "Modified Luxury Sail Barge",
+    name: "Sail barge",
+    passengers: "500"
 }
 
 export const mockCleanedPeopleData = {
@@ -23,8 +23,7 @@ export const mockCleanedPlanetData = {
   terrain: "grasslands, mountains"
 }
 
-export const mockDirtyPlanetData = [
-  {
+export const mockDirtyPlanetData = {
   "count": 61,
   "next": "https://swapi.co/api/planets/?page=2",
   "previous": null,
@@ -54,7 +53,6 @@ export const mockDirtyPlanetData = [
       }
     ]
   }
-]
 
 export const mockDirtyPeopleData = {
   "count": 87,

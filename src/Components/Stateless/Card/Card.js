@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Card.css';
 
 const Card = ({ data, id, findCard, selected }) => {
@@ -9,10 +9,10 @@ const Card = ({ data, id, findCard, selected }) => {
         { keys.map((key, index) => {
           if (key === 'name') {
             return (
-            <div className="cardHeader">
+            <div className="cardHeader" key={index}>
               <h2>{data.name}</h2>      
               <div className="cardFave">
-                <a href="#" className="favoriteIcon" onClick={() => findCard(data.id)}></a>
+                <a className="favoriteIcon" onClick={() => findCard(data.id)}></a>
               </div>
             </div>
             )
