@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ScrollingText.css';
+import themeSong from './imperial-march.mp3';
 
 class ScrollingText extends Component {
   constructor() {
@@ -33,7 +34,7 @@ class ScrollingText extends Component {
       <section className="scrollingTextContainer">
       <div id="titles">
         <div id="titlecontent">
-
+        <audio src={themeSong} autoPlay loop></audio>
         <p>{this.state.crawl}</p>
         <p><span>{this.state.title}</span></p>
         <p className="scrollYear"><span>{this.state.date}</span></p>

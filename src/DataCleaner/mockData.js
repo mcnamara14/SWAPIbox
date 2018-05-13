@@ -1,9 +1,9 @@
 export const mockCleanedVehicleData = {
-    class: "repulsorcraft",
-    id: "vehicles2",
-    model: "X-34 landspeeder",
-    name: "X-34 landspeeder",
-    passengers: "1"
+    class: "sail barge",
+    id: "vehicles0",
+    model: "Modified Luxury Sail Barge",
+    name: "Sail barge",
+    passengers: "500"
 }
 
 export const mockCleanedPeopleData = {
@@ -18,6 +18,7 @@ export const mockCleanedPlanetData = {
   climate: "temperate",
   id: "planets0",
   name: "Alderaan",
+  residents: "Alderaan",
   population: "2000000000",
   terrain: "grasslands, mountains"
 }
@@ -28,25 +29,30 @@ export const mockDirtyPlanetData = {
   "previous": null,
   "results": [
       {
-          "name": "Yavin IV",
-          "rotation_period": "24",
-          "orbital_period": "4818",
-          "diameter": "10200",
-          "climate": "temperate, tropical",
-          "gravity": "1 standard",
-          "terrain": "jungle, rainforests",
-          "surface_water": "8",
-          "population": "1000",
-          "residents": [],
-          "films": [
-              "https://swapi.co/api/films/1/"
-          ],
-          "created": "2014-12-10T11:37:19.144000Z",
-          "edited": "2014-12-20T20:58:18.421000Z",
-          "url": "https://swapi.co/api/planets/3/"
+        "name": "Alderaan",
+        "rotation_period": "24",
+        "orbital_period": "364",
+        "diameter": "12500",
+        "climate": "temperate",
+        "gravity": "1 standard",
+        "terrain": "grasslands, mountains",
+        "surface_water": "40",
+        "population": "2000000000",
+        "residents": [
+            "https://swapi.co/api/people/5/",
+            "https://swapi.co/api/people/68/",
+            "https://swapi.co/api/people/81/"
+        ],
+        "films": [
+            "https://swapi.co/api/films/6/",
+            "https://swapi.co/api/films/1/"
+        ],
+        "created": "2014-12-10T11:35:48.479000Z",
+        "edited": "2014-12-20T20:58:18.420000Z",
+        "url": "https://swapi.co/api/planets/2/"
       }
-  ]
-}
+    ]
+  }
 
 export const mockDirtyPeopleData = {
   "count": 87,
@@ -180,4 +186,8 @@ export const mockDirtySpeciesData = {
   "created": "2014-12-10T15:16:16.259000Z",
   "edited": "2015-04-17T06:59:43.869528Z",
   "url": "https://swapi.co/api/species/2/"
+}
+
+export const mockDirtyResidentData = {
+
 }

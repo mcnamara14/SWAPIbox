@@ -83,7 +83,9 @@ class CardContainer extends Component {
                         </div>
                     </section>
         case 'loading':
-            return <Loading />
+            return <div>
+              <Loading />
+              </div>
       }
     }
 

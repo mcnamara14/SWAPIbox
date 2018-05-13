@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import DataCleaner from '../../../DataCleaner/DataCleaner'
 import './Buttons.css';
-
-const dataCleaner = new DataCleaner();
 
 class Buttons extends Component {
   constructor(props){

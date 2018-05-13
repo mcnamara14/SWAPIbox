@@ -11,7 +11,7 @@ class DataCleaner {
           return this.cleanPlanetData(rawData)
       case 'vehicles':
           return this.cleanVehicleData(rawData)
-    }
+    };
   };
 
   cleanPeopleData = async (people) => {
@@ -48,10 +48,10 @@ class DataCleaner {
 
   cleanPlanetData = async (planets) => {
     const unresolvedPlanetData = planets.map(async (planet, index) => {
-    const residentData = await this.cleanResidentsData(planet)
-
+    const residents = await this.cleanResidentsData(planet)
+ 
     return {name: planet.name, terrain: planet.terrain, population: planet.population, 
-              climate: planet.climate, id: `planets${index}`}
+              climate: planet.climate, residents,  id: `planets${index}`}
     });
 
     return await Promise.all(unresolvedPlanetData)
@@ -60,8 +60,10 @@ class DataCleaner {
   cleanResidentsData = async (planet) => {
     const unresolvedResidents = planet.residents.map(async (resident, index) => {
       const residentsResponse = await fetch(resident);
-      const parsedResidents = await residentsResponse.json();
-      return resident.name
+      const parsedResident = await residentsResponse.json();
+      const residentName = parsedResident.name
+
+      return residentName
     });
 
     return await Promise.all(unresolvedResidents)
