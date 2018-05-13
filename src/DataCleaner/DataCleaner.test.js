@@ -1,6 +1,7 @@
 import React from 'react';
 import DataCleaner from './DataCleaner';
-import { mockDirtyPeopleData, mockCleanedPeopleData, mockDirtyHomeworldData, mockDirtySpeciesData } from './mockData';
+import { mockDirtyPeopleData, mockCleanedPeopleData, mockCleanedPlanetData, 
+         mockDirtyHomeworldData, mockDirtySpeciesData, mockDirtyPlanetData } from './mockData';
 import { shallow } from 'enzyme';
 
 describe('Data cleaner', () => {
@@ -137,5 +138,42 @@ describe('Data cleaner', () => {
     })
 
   });
+
+  describe('cleanPlanetData', () => {
+    
+    it('should call cleanResidentsData with correct arg', async () => {
+      dataCleaner.cleanResidentsData = jest.fn() 
+      const expected = mockDirtyPlanetData[0]
+      dataCleaner.cleanPlanetData(mockDirtyPlanetData);
+
+      expect(dataCleaner.cleanResidentsData).toHaveBeenCalledWith(expected);
+    });
+
+    it('should return an array of objects containing clean data', async () => {
+      const mockData = mockDirtyPlanetData[0].results
+      const expected = [mockCleanedPlanetData]
+
+      dataCleaner.cleanResidentsData = jest.fn().mockImplementation(() => { 
+        return 'Alderaan'
+      });
+
+      const result = await dataCleaner.cleanPlanetData(mockData);
+
+      expect(result).toEqual(expected);
+    })
+  });
+  
+  describe('cleanResidentsData', () => {
+    // beforeEach(() => {
+    //   window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+    //     status: 200,
+    //     json: () => Promise.resolve()
+    //   })
+    // }))
+
+    it('should call fetch with the correct argument', () => {
+
+    })
+  })
 
 });
