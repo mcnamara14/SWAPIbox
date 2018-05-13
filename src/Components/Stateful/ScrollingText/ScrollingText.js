@@ -13,10 +13,11 @@ class ScrollingText extends Component {
     }
   }
     
-  componentDidMount = () => {
-    fetch('https://swapi.co/api/films')
-      .then(response => response.json())
-      .then(response => this.returnRandomCrawl(response.results))
+  componentDidMount = async () => {
+    const response = await fetch('https://swapi.co/api/films');
+    const data = await response.json()
+    
+    await this.returnRandomCrawl(data.results)
   }
 
   returnRandomCrawl = (films) => {
@@ -34,11 +35,10 @@ class ScrollingText extends Component {
       <section className="scrollingTextContainer">
       <div id="titles">
         <div id="titlecontent">
-        <audio src={themeSong} autoPlay loop></audio>
         <p>{this.state.crawl}</p>
         <p><span>{this.state.title}</span></p>
         <p className="scrollYear"><span>{this.state.date}</span></p>
-    
+        <audio src={themeSong} autoPlay loop></audio>
       </div>
     </div>
     </section>

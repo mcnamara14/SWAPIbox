@@ -2,7 +2,7 @@ import React from 'react';
 import './Loading.css';
 import loadingSound from './loading.wav';
 
-const Header = (props) => {
+const Loading = (props) => {
   
   return (
     <div className="loading">
@@ -12,4 +12,4 @@ const Header = (props) => {
   );
 }
 
-export default Header;
+export default Loading;

@@ -27,7 +27,6 @@ class CardContainer extends Component {
     setData = async (filter) => {
       this.setState({ renderState: 'loading' })
       const data = await dataCleaner.fetchData(filter);
-
       this.setState({ data, renderState: 'cards' })
     }
 
@@ -68,7 +67,7 @@ class CardContainer extends Component {
         const selected = this.state.favorites.find(favorite => favorite.id === eachData.id);
         return <Card data={eachData} key={index} findCard={this.findCard} selected={selected} />
        })
-       
+
        return cards;
     }
 
@@ -83,9 +82,7 @@ class CardContainer extends Component {
                         </div>
                     </section>
         case 'loading':
-            return <div>
-              <Loading />
-              </div>
+            return <div><Loading /></div>
       }
     }
 
