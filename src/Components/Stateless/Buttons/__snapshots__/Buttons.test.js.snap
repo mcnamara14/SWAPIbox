@@ -7,6 +7,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Buttons
     favoriteCount={1}
     setData={[Function]}
+    toggleAddFavorites={[Function]}
     toggleDisplayFavorites={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
