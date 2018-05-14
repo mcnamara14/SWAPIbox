@@ -14,10 +14,14 @@ class ScrollingText extends Component {
   }
     
   componentDidMount = async () => {
-    const response = await fetch('https://swapi.co/api/films');
-    const data = await response.json();
-
-    await this.returnRandomCrawl(data.results);
+    try {
+      const response = await fetch('https://swapi.co/api/films');
+      const data = await response.json();
+  
+      await this.returnRandomCrawl(data.results);
+    } catch (error) {
+      throw Error(`Error fetching scroll text`);
+    }
   }
 
   returnRandomCrawl = (films) => {

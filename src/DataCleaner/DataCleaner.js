@@ -30,20 +30,28 @@ class DataCleaner {
   };
 
   cleanHomeworldData = async (homeworld) => {
-    const homeworldResponse = await fetch(homeworld);
-    const homeworldData = await homeworldResponse.json();
-    const name = homeworldData.name;
-    const population = homeworldData.population;
+    try {
+      const homeworldResponse = await fetch(homeworld);
+      const homeworldData = await homeworldResponse.json();
+      const name = homeworldData.name;
+      const population = homeworldData.population;
 
-    return { name, population };
+      return { name, population };
+    } catch (error) {
+      throw Error(`Error fetching homeworld data`);
+    }
   }
 
   cleanSpeciesData = async (species) => {
-    const speciesResponse = await fetch(species);
-    const speciesData = await speciesResponse.json();
-    const speciesName = speciesData.name;
+    try {
+      const speciesResponse = await fetch(species);
+      const speciesData = await speciesResponse.json();
+      const speciesName = speciesData.name;
 
-    return speciesName;
+      return speciesName;
+    } catch (error) {
+      throw Error(`Error fetching species data`);
+    }
   }
 
   cleanPlanetData = async (planets) => {
@@ -59,15 +67,19 @@ class DataCleaner {
   };
 
   cleanResidentsData = async (planet) => {
-    const unresolvedResidents = planet.residents.map(async (resident) => {
-      const residentsResponse = await fetch(resident);
-      const parsedResident = await residentsResponse.json();
-      const residentName = parsedResident.name;
+    try {
+      const unresolvedResidents = planet.residents.map(async (resident) => {
+        const residentsResponse = await fetch(resident);
+        const parsedResident = await residentsResponse.json();
+        const residentName = parsedResident.name;
 
-      return residentName;
-    });
+        return residentName;
+      });
 
-    return await Promise.all(unresolvedResidents);
+      return await Promise.all(unresolvedResidents);
+    } catch (error) {
+      throw Error(`Error fetching residents data`);
+    }
   };
 
   cleanVehicleData = async (vehicles) => {
