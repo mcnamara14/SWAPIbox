@@ -5,7 +5,7 @@
 .filterButtons {
   background: #241c41;
   border-top: 1px solid #624385;
-  height: 60px;
+  height: 80px;
   border-bottom: 3px solid #fe6244; }
 
 .filterButtons div {
@@ -23,7 +23,13 @@ button {
   width: 25%;
   height: 99%;
   border-left: 1px solid #302752;
-  border-right: 1px solid #302752; }
+  border-right: 1px solid #302752;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px; }
+
+button.favorites {
+  margin-top: 0px; }
 
 button:hover {
   cursor: pointer;
@@ -42,3 +48,33 @@ button:focus {
   border: 1px solid #555;
   padding: 6px 12px 5px 9px;
   display: inline-block; }
+
+@media screen and (max-width: 1000px) {
+  .filterButtons {
+    height: 80px; }
+  button {
+    margin-top: 0px;
+    font-size: 0.8rem; }
+  .card {
+    width: 100%;
+    text-align: center;
+    height: 450px; }
+  .card p {
+    margin: 6% 10%;
+    font-size: 1.3rem; }
+  .card span {
+    font-size: 1.2rem; }
+  h2 {
+    font-size: 1.3rem; }
+  .cardFave {
+    width: 18% !important; }
+  .favorites span {
+    border: none;
+    padding: 0;
+    background: none;
+    margin-left: 5px;
+    font-size: 1.2rem; }
+  .filterButtons div {
+    width: 100%;
+    margin: 0 auto;
+    height: 100%; } }

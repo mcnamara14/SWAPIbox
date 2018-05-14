@@ -1,15 +1,17 @@
 h2 {
   font-size: 1rem;
+  font-family: 'Exo 2', sans-serif;
   margin: 0 0 0 10%;
-  padding: 0; }
+  padding: 0;
+  text-transform: uppercase; }
 
 h3 {
   font-size: 1rem; }
 
 .card p {
-  margin-left: 10%;
-  margin-right: 10%;
-  color: #ccc; }
+  margin: 8% 10%;
+  color: #ccc;
+  line-height: 22px; }
 
 .card {
   background: rgba(48, 39, 82, 0.75);
@@ -22,7 +24,7 @@ h3 {
   display: inline-block;
   text-align: left;
   position: relative;
-  height: 350px;
+  height: 480px;
   box-shadow: 1px 2px 4px #624385; }
 
 .cardHeader {
@@ -46,6 +48,9 @@ h3 {
   -ms-flex-align: center;
   align-items: center;
   border-radius: 0 3px 0 0; }
+
+.cardFave:hover {
+  cursor: pointer; }
 
 .cards {
   background: url(/static/media/bg.a365c158.jpg);
@@ -81,7 +86,11 @@ h3 {
   border-radius: 0 0 3px 3px; }
 
 .card span {
-  color: #fff; }
+  font-family: 'Exo 2', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.9rem; }
 
 .favorite .cardBottom {
   background-image: url("./bottom-bg-active.jpg") !important; }
