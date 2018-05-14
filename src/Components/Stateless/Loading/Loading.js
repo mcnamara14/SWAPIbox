@@ -2,8 +2,7 @@ import React from 'react';
 import './Loading.css';
 import loadingSound from './loading.wav';
 
-const Loading = (props) => {
-  
+const Loading = () => {
   return (
     <div className="loading">
       <audio src={loadingSound} autoPlay loop></audio>
