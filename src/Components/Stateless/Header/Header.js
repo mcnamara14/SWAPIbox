@@ -1,8 +1,7 @@
 import React from 'react';
 import './Header.css';
 
-const Header = (props) => {
-  
+const Header = () => {
     return (
       <div className="header">
         <img src={require('./logo.png')} height="50px" />
