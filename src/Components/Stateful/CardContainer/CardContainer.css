@@ -12,3 +12,6 @@
   margin: 0 auto;
   flex-wrap: wrap;
   justify-content: space-between; }
+
+.cardsWrapper {
+  margin-bottom: 80px; }
