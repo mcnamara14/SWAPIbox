@@ -24,10 +24,11 @@ describe('ScrollingText', () => {
   //   const wrapper = shallow(<ScrollingText />);
   //   it('should call returnRandomCrawl after fetch', () => {
   //     wrapper.instance().returnRandomCrawl = jest.fn();
+
   //     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
   //       status: 200,
   //       json: () => Promise.resolve(
-  //         wrapper.instance().returnRandomCrawl
+  //         mockDirtyFilmsData
   //       )
   //     })
   //   )

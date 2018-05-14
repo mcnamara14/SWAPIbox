@@ -16,7 +16,7 @@ class ScrollingText extends Component {
   componentDidMount = async () => {
     const response = await fetch('https://swapi.co/api/films');
     const data = await response.json()
-    
+    console.log(data)
     await this.returnRandomCrawl(data.results)
   }
 

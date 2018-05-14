@@ -45,8 +45,20 @@ describe('Buttons', () => {
       expect(wrapper.instance().handleClick).toHaveBeenCalled();
     });
 
-    it('should call handleClick when favorites is clicked', () => {
+    it('should call setData when people is clicked', () => {
       wrapper.find('.people').simulate('click');
+  
+      expect(wrapper.instance().props.setData).toHaveBeenCalled();
+    });
+
+    it('should call setData when planets is clicked', () => {
+      wrapper.find('.planets').simulate('click');
+  
+      expect(wrapper.instance().props.setData).toHaveBeenCalled();
+    });
+
+    it('should call setData when vehicles is clicked', () => {
+      wrapper.find('.vehicles').simulate('click');
   
       expect(wrapper.instance().props.setData).toHaveBeenCalled();
     });

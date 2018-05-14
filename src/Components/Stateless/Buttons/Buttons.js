@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Buttons.css';
+import PropTypes from 'prop-types';
 
 class Buttons extends Component {
   constructor(props){
@@ -24,6 +25,10 @@ class Buttons extends Component {
       </section>
     );
   }
+}
+
+Buttons.propTypes = {
+  setData: PropTypes.func
 }
 
 export default Buttons;

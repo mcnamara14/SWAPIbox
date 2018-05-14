@@ -1,5 +1,6 @@
 import React from 'react';
 import './Card.css';
+import PropTypes from 'prop-types';
 
 const Card = ({ data, id, findCard, selected }) => {
   const keys = Object.keys(data);
@@ -27,6 +28,13 @@ const Card = ({ data, id, findCard, selected }) => {
     </article>
   )
 };
+
+Card.propTypes = {
+  data: PropTypes.object,
+  id: PropTypes.string,
+  findCard: PropTypes.func,
+  selected: PropTypes.object
+}
 
 export default Card;
 
