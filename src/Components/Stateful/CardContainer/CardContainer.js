@@ -3,6 +3,7 @@ import Card from '../../Stateless/Card/Card';
 import Buttons from '../../Stateless/Buttons/Buttons';
 import DataCleaner from '../../../DataCleaner/DataCleaner';
 import Loading from '../../Stateless/Loading/Loading';
+import AddFavorites from '../../Stateless/AddFavorites/AddFavorites';
 import ScrollingText from '../../Stateful/ScrollingText/ScrollingText';
 import './CardContainer.css';
 
@@ -66,6 +67,10 @@ class CardContainer extends Component {
       this.setState({ data: this.state.favorites });
     }
 
+    toggleAddFavorites = () => {
+      this.setState({ renderState: 'addFavorites' })
+    }
+
     getCards = () => {
       const cards = this.state.data.map((eachData, index) => {
         const selected = this.state.favorites
@@ -90,6 +95,8 @@ class CardContainer extends Component {
           </section>;
         case 'loading':
           return <div><Loading /></div>;
+        case 'addFavorites': 
+          return <AddFavorites />
       }
     }
 
@@ -98,7 +105,8 @@ class CardContainer extends Component {
         <section className="cardContainer">
           <Buttons setData={this.setData} 
             favoriteCount={this.state.favoriteCount} 
-            toggleDisplayFavorites={this.toggleDisplayFavorites} />
+            toggleDisplayFavorites={this.toggleDisplayFavorites} 
+            toggleAddFavorites={this.toggleAddFavorites} />
           { this.toggleRender() }
         </section>
       );

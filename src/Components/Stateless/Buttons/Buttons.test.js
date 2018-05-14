@@ -7,7 +7,7 @@ describe('Buttons', () => {
   let wrapper; 
 
   beforeEach(() => {
-    wrapper = shallow(<Buttons favoriteCount={ 1 } setData={ jest.fn() } toggleDisplayFavorites={ jest.fn() } />);
+    wrapper = shallow(<Buttons favoriteCount={ 1 } setData={ jest.fn() } toggleDisplayFavorites={ jest.fn() } toggleAddFavorites={ jest.fn() } />);
   })
 
   it('should match the snapshot', () => {
@@ -22,12 +22,12 @@ describe('Buttons', () => {
       expect(wrapper.instance().props.toggleDisplayFavorites).toHaveBeenCalled();
     })
 
-    it('should not call toggleDisplayFavorites if favoriteCount is 0', () => {
-      wrapper = shallow(<Buttons favoriteCount={ 0 } toggleDisplayFavorites={ jest.fn() }/>);
+    it('should call toggleAddFavorites if favoriteCount is 0', () => {
+      wrapper = shallow(<Buttons favoriteCount={ 0 } toggleDisplayFavorites={ jest.fn() } toggleAddFavorites={ jest.fn() }/>);
 
       wrapper.instance().handleClick();
 
-      expect(wrapper.instance().props.toggleDisplayFavorites).not.toHaveBeenCalled();
+      expect(wrapper.instance().props.toggleAddFavorites).toHaveBeenCalled();
     })
   })
 

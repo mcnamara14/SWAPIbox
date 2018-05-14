@@ -10,6 +10,8 @@ class Buttons extends Component {
   handleClick = () => {
     if (this.props.favoriteCount > 0) {
       this.props.toggleDisplayFavorites();
+    } else {
+      this.props.toggleAddFavorites();
     }
   }
 
@@ -35,7 +37,8 @@ class Buttons extends Component {
 Buttons.propTypes = {
   setData: PropTypes.func,
   toggleDisplayFavorites: PropTypes.func,
-  favoriteCount: PropTypes.number
+  favoriteCount: PropTypes.number,
+  toggleAddFavorites: PropTypes.func
 };
 
 export default Buttons;

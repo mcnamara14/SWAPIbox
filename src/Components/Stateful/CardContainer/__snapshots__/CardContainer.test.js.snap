@@ -21,6 +21,7 @@ ShallowWrapper {
         <Buttons
           favoriteCount={0}
           setData={[Function]}
+          toggleAddFavorites={[Function]}
           toggleDisplayFavorites={[Function]}
 />,
         <ScrollingText />,
@@ -36,6 +37,7 @@ ShallowWrapper {
         "props": Object {
           "favoriteCount": 0,
           "setData": [Function],
+          "toggleAddFavorites": [Function],
           "toggleDisplayFavorites": [Function],
         },
         "ref": null,
@@ -64,6 +66,7 @@ ShallowWrapper {
           <Buttons
             favoriteCount={0}
             setData={[Function]}
+            toggleAddFavorites={[Function]}
             toggleDisplayFavorites={[Function]}
 />,
           <ScrollingText />,
@@ -79,6 +82,7 @@ ShallowWrapper {
           "props": Object {
             "favoriteCount": 0,
             "setData": [Function],
+            "toggleAddFavorites": [Function],
             "toggleDisplayFavorites": [Function],
           },
           "ref": null,
