@@ -1,12 +1,12 @@
 html {
-  background: url("./bg.jpg");
-  height: 100%;
   background-repeat: repeat !important;
-  font-family: 'Work Sans', sans-serif; }
+  background: url("./bg.jpg");
+  font-family: 'Work Sans', sans-serif;
+  height: 100%; }
 
 body {
-  font: 100% "Work Sans", sans-serif;
-  color: #333; }
+  color: #333;
+  font: 100% "Work Sans", sans-serif; }
 
 .App {
   text-align: center; }
@@ -17,9 +17,9 @@ body {
 
 .App-header {
   background-color: #222;
+  color: white;
   height: 150px;
-  padding: 20px;
-  color: white; }
+  padding: 20px; }
 
 .App-title {
   font-size: 1.5em; }
