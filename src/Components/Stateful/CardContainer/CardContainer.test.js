@@ -3,9 +3,22 @@ import ReactDOM from 'react-dom';
 import CardContainer from './CardContainer';
 import ScrollingText from '../ScrollingText/ScrollingText';
 import Loading from '../../Stateless/Loading/Loading';
-import { shallow } from 'enzyme';
+import { shallow, renderer } from 'enzyme';
 import DataCleaner from '../../../DataCleaner/DataCleaner';
 import { mockCleanedPeopleData } from '../../../DataCleaner/mockData';
+jest.mock('../../../DataCleaner/DataCleaner', () => {
+  return jest.fn().mockImplementation(() => {
+    return {
+      fetchData: jest.fn().mockImplementation(() => Promise.resolve({
+        homeworld: "Tatooine",
+        id: "people0",
+        name: "Luke Skywalker",
+        population: "200000",
+        species: "Human"
+      }))
+    };
+  });
+});
 
 describe('CardContainer', () => {
   let wrapper; 
@@ -13,24 +26,22 @@ describe('CardContainer', () => {
 
   beforeEach((() => {
     wrapper = shallow(<CardContainer />)
-    dataCleaner = new DataCleaner();
   }))
 
   it('should match snapshot', () => {
+
     expect(wrapper).toMatchSnapshot();
   });
 
-  // describe('setData', () => {
-  //   it('should set data to clean people data when called', async () => {
-  //      const filter = 'people';
-  //      dataCleaner.fetchData = jest.fn();
-  //      await wrapper.instance().setData(filter)
+  describe('setData', () => {
+    it('should call fetchData with correct argument', async () => {
+      const filter = 'people';
 
-  //      console.log(wrapper.state())
+      await wrapper.instance().setData(filter)
 
-  //      expect(dataCleaner.fetchData).toHaveBeenCalledWith(filter)
-  //   })
-  // })
+      expect(wrapper.instance().dataCleaner.fetchData).toHaveBeenCalledWith(filter)
+    })
+  })
 
   describe('findCard', () => {
     it('should call removeFavorite if a card is in favorites array already with selected card', () => {
