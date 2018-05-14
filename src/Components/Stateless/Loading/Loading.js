@@ -9,6 +9,6 @@ const Loading = () => {
       <img src={require('./loading.gif')} height="400" alt={'Loading gif'}/>
     </div>
   );
-}
+};
 
 export default Loading;

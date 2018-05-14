@@ -8,7 +8,7 @@ class Buttons extends Component {
   }
 
   handleClick = () => {
-    if(this.props.favoriteCount > 0) {
+    if (this.props.favoriteCount > 0) {
       this.props.toggleDisplayFavorites();
     }
   }
@@ -17,10 +17,15 @@ class Buttons extends Component {
     return (
       <section className="filterButtons">
         <div>
-          <button className="people" onClick={() => this.props.setData('people')} >people</button>
-          <button className="planets" onClick={() => this.props.setData('planets')} >planets</button>
-          <button className="vehicles" onClick={() => this.props.setData('vehicles')} >vehicles</button>
-          <button className="favorites" onClick={() => this.handleClick()} >View Favorites<span>{this.props.favoriteCount}</span></button>
+          <button className="people" onClick={() => 
+            this.props.setData('people')} >people</button>
+          <button className="planets" onClick={() => 
+            this.props.setData('planets')} >planets</button>
+          <button className="vehicles" onClick={() => 
+            this.props.setData('vehicles')} >vehicles</button>
+          <button className="favorites" onClick={() => 
+            this.handleClick()} >View Favorites<span>
+              {this.props.favoriteCount}</span></button>
         </div>
       </section>
     );
@@ -28,7 +33,9 @@ class Buttons extends Component {
 }
 
 Buttons.propTypes = {
-  setData: PropTypes.func
-}
+  setData: PropTypes.func,
+  toggleDisplayFavorites: PropTypes.func,
+  favoriteCount: PropTypes.number
+};
 
 export default Buttons;
