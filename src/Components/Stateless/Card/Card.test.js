@@ -49,4 +49,13 @@ describe('Card', () => {
 
     expect(wrapper.find('.favorite').length).toEqual(0);
   })
+
+  it('should call findCard when favoriteIcon is clicked', () => {
+    const mockFunction = jest.fn(); 
+    const wrapper = shallow(<Card {...mockProps} findCard={mockFunction} />)
+    
+    wrapper.find('.favoriteIcon').simulate('click');
+
+    expect(mockFunction).toHaveBeenCalled()  
+  })
 })
