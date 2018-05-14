@@ -7,8 +7,6 @@ import AddFavorites from '../../Stateless/AddFavorites/AddFavorites';
 import ScrollingText from '../../Stateful/ScrollingText/ScrollingText';
 import './CardContainer.css';
 
-const dataCleaner = new DataCleaner();
-
 class CardContainer extends Component {
   constructor() {
     super();
@@ -21,13 +19,14 @@ class CardContainer extends Component {
       favoriteCount: 0
     };
 
+    this.dataCleaner = new DataCleaner();
     this.displayFavorites = false;
     this.setData = this.setData.bind(this);
   }
 
     setData = async (filter) => {
       this.setState({ renderState: 'loading' });
-      const data = await dataCleaner.fetchData(filter);
+      const data = await this.dataCleaner.fetchData(filter);
       this.setState({ data, renderState: 'cards' });
     }
 
