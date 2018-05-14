@@ -75,7 +75,7 @@ class DataCleaner {
     });
 
     return await Promise.all(unresolvedVehiclesData)
-  };
+  }
  
 }
 

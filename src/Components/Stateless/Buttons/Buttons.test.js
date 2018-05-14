@@ -1,9 +1,55 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Buttons from './Buttons';
+import { shallow } from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe('Buttons', () => {
+  let wrapper; 
+
+  beforeEach(() => {
+    wrapper = shallow(<Buttons favoriteCount={ 1 } setData={ jest.fn() } toggleDisplayFavorites={ jest.fn() } />);
+  })
+
+  it('should match the snapshot', () => {
+    expect(wrapper).toMatchSnapshot();
+  })
+
+  describe('handleClick', () => {
+
+    it('should call toggleDisplayFavorites if favoriteCount is more than 0', () => {
+      wrapper.instance().handleClick();
+
+      expect(wrapper.instance().props.toggleDisplayFavorites).toHaveBeenCalled();
+    })
+
+    it('should not call toggleDisplayFavorites if favoriteCount is 0', () => {
+      wrapper = shallow(<Buttons favoriteCount={ 0 } toggleDisplayFavorites={ jest.fn() }/>);
+
+      wrapper.instance().handleClick();
+
+      expect(wrapper.instance().props.toggleDisplayFavorites).not.toHaveBeenCalled();
+    })
+  })
+
+  describe('render', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<Buttons setData={ jest.fn() } toggleDisplayFavorites={ jest.fn() } />);
+    })
+
+    it('should call handleClick when favorites is clicked', () => {
+      wrapper.instance().handleClick = jest.fn();
+      wrapper.find('.favorites').simulate('click');
+  
+      expect(wrapper.instance().handleClick).toHaveBeenCalled();
+    });
+
+    it('should call handleClick when favorites is clicked', () => {
+      wrapper.find('.people').simulate('click');
+  
+      expect(wrapper.instance().props.setData).toHaveBeenCalled();
+    });
+  })
+})
+
