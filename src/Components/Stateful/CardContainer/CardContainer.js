@@ -65,6 +65,7 @@ class CardContainer extends Component {
     getCards = () => {
       const cards = this.state.data.map((eachData, index) => {
         const selected = this.state.favorites.find(favorite => favorite.id === eachData.id);
+
         return <Card data={eachData} key={index} findCard={this.findCard} selected={selected} />
        })
 
