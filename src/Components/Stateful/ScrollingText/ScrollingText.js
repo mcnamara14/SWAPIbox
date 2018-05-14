@@ -10,14 +10,14 @@ class ScrollingText extends Component {
       crawl: '', 
       title: '',
       date: ''
-    }
+    };
   }
     
   componentDidMount = async () => {
     const response = await fetch('https://swapi.co/api/films');
-    const data = await response.json()
-    console.log(data)
-    await this.returnRandomCrawl(data.results)
+    const data = await response.json();
+
+    await this.returnRandomCrawl(data.results);
   }
 
   returnRandomCrawl = (films) => {
@@ -27,24 +27,24 @@ class ScrollingText extends Component {
     const title = films[randomFilm].title;
     const date = films[randomFilm].release_date;
 
-    this.setState({ crawl, title, date })
+    this.setState({ crawl, title, date });
   }
 
   render() {
     return (
       <section className="scrollingTextContainer">
-      <div id="titles">
-        <div id="titlecontent">
-        <p>{this.state.crawl}</p>
-        <p><span>{this.state.title}</span></p>
-        <p className="scrollYear"><span>{this.state.date}</span></p>
-        <audio src={themeSong} autoPlay loop></audio>
-      </div>
-    </div>
-    </section>
+        <div id="titles">
+          <div id="titlecontent">
+            <p>{this.state.crawl}</p>
+            <p><span>{this.state.title}</span></p>
+            <p className="scrollYear"><span>{this.state.date}</span></p>
+            <audio src={themeSong} autoPlay loop></audio>
+          </div>
+        </div>
+      </section>
 
     );
-  };
+  }
 }
 
 export default ScrollingText;
