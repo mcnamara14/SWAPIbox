@@ -142,6 +142,16 @@ describe('Data cleaner', () => {
       expect(result).toEqual(expected)
     })
 
+    it('throw an error if status is not ok', async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 500,
+      }))
+
+      const expected = Error('Error fetching homeworld data');
+
+      await expect(dataCleaner.cleanHomeworldData()).rejects.toEqual(expected)    
+    })
+
   });
 
   describe('cleanSpeciesData', async () => {
@@ -173,6 +183,16 @@ describe('Data cleaner', () => {
       const result = await dataCleaner.cleanSpeciesData(species)
 
       expect(result).toEqual(expected)
+    })
+
+    it('throw an error if status is not ok', async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 500,
+      }))
+
+      const expected = Error('Error fetching species data');
+
+      await expect(dataCleaner.cleanSpeciesData()).rejects.toEqual(expected)    
     })
 
   });
@@ -211,6 +231,16 @@ describe('Data cleaner', () => {
       await dataCleaner.cleanResidentsData(mockData)
 
       expect(window.fetch).toHaveBeenCalledTimes(3)
+    })
+
+    it('throw an error if status is not ok', async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 500,
+      }))
+
+      const expected = Error('Error fetching residents data');
+
+      await expect(dataCleaner.cleanResidentsData()).rejects.toEqual(expected)    
     })
 
   })
