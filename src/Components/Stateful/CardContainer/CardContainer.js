@@ -68,7 +68,7 @@ class CardContainer extends Component {
     }
 
     toggleAddFavorites = () => {
-      this.setState({ renderState: 'addFavorites' })
+      this.setState({ renderState: 'addFavorites' });
     }
 
     getCards = () => {
@@ -89,14 +89,14 @@ class CardContainer extends Component {
           return <ScrollingText />;
         case 'cards':
           return <section className="cards">
-            <div>
+            <div className="cardsWrapper">
               {this.getCards()}
             </div>
           </section>;
         case 'loading':
           return <div><Loading /></div>;
         case 'addFavorites': 
-          return <AddFavorites />
+          return <AddFavorites />;
       }
     }
 

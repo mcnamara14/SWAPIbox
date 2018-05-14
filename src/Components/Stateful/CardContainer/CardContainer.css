@@ -1,6 +1,6 @@
 .header {
-  width: 80%;
-  display: inline-block; }
+  display: inline-block;
+  width: 80%; }
 
 .cards {
   background: url("./bg.jpg");
@@ -8,7 +8,10 @@
 
 .cards div {
   display: flex;
-  width: 80%;
-  margin: 0 auto;
   flex-wrap: wrap;
-  justify-content: space-between; }
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 80%; }
+
+.cardsWrapper {
+  margin-bottom: 80px; }

@@ -1,19 +1,22 @@
 .header {
-  width: 80%;
   display: inline-block;
+  width: 80%;
 }
 
 .cards {
-  // background-color: #282046;
   background: url('./bg.jpg');
   padding-top: 40px;
 }
 
 .cards div {
   display: flex;
-  width: 80%;
-  margin: 0 auto;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.cardsWrapper {
+  margin-bottom: 80px;
 }
 

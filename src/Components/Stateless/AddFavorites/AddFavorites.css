@@ -1,13 +1,13 @@
 .addFavorites h1 {
-  font-family: 'Exo 2', sans-serif;
+  background: #241c41;
+  border-radius: 3px;
+  border: 1px solid #624385;
   color: #fff;
-  text-transform: uppercase;
+  display: block;
+  font-family: 'Exo 2', sans-serif;
   font-size: 2.5rem;
   margin-top: 200px;
-  width: 40%;
-  display: block;
-  background: #241c41;
   margin: 200px auto 0 auto;
   padding: 50px;
-  border-radius: 3px;
-  border: 1px solid #624385; }
+  text-transform: uppercase;
+  width: 40%; }

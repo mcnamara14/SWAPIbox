@@ -1,53 +1,54 @@
 .header {
-  width: 80%;
-  display: inline-block; }
+  display: inline-block;
+  width: 80%; }
 
 .filterButtons {
   background: #241c41;
+  border-bottom: 3px solid #fe6244;
   border-top: 1px solid #624385;
-  height: 80px;
-  border-bottom: 3px solid #fe6244; }
+  height: 80px; }
 
 .filterButtons div {
-  width: 80%;
+  height: 100%;
   margin: 0 auto;
-  height: 100%; }
+  width: 80%; }
 
 button {
   background: none;
-  border: none;
-  color: #ccc;
-  margin-top: -2px;
-  text-transform: uppercase;
-  font-size: 1rem;
-  width: 25%;
-  height: 99%;
+  border-bottom: none;
   border-left: 1px solid #302752;
   border-right: 1px solid #302752;
+  border-top: none;
+  color: #ccc;
   font-family: 'Exo 2', sans-serif;
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 2px; }
+  height: 99%;
+  letter-spacing: 2px;
+  margin-top: -2px;
+  text-transform: uppercase;
+  width: 25%; }
 
 button.favorites {
   margin-top: 0px; }
 
 button:hover {
-  cursor: pointer;
-  background: #302752; }
+  background: #302752;
+  cursor: pointer; }
 
 button:focus {
   outline: none; }
 
 .favorites span {
-  color: white;
-  margin-left: 10px;
-  margin-bottom: 0px;
-  width: 13px;
-  font-size: 1.3rem;
   background: #302752;
   border: 1px solid #555;
+  color: white;
+  display: inline-block;
+  font-size: 1.3rem;
+  margin-bottom: 0px;
+  margin-left: 10px;
   padding: 6px 12px 5px 9px;
-  display: inline-block; }
+  width: 13px; }
 
 @media screen and (max-width: 1000px) {
   .filterButtons {
@@ -56,9 +57,9 @@ button:focus {
     margin-top: 0px;
     font-size: 0.8rem; }
   .card {
-    width: 100%;
+    height: 450px;
     text-align: center;
-    height: 450px; }
+    width: 100%; }
   .card p {
     margin: 6% 10%;
     font-size: 1.3rem; }
@@ -69,11 +70,11 @@ button:focus {
   .cardFave {
     width: 18% !important; }
   .favorites span {
-    border: none;
-    padding: 0;
     background: none;
+    border: none;
+    font-size: 1.2rem;
     margin-left: 5px;
-    font-size: 1.2rem; }
+    padding: 0; }
   .filterButtons div {
     width: 100%;
     margin: 0 auto;
