@@ -5,11 +5,13 @@ html {
   background: url('./bg.jpg');
   height: 100%;
   background-repeat: repeat !important;
+  font-family: 'Work Sans', sans-serif;
 }
 
 body {
   font: 100% $font-stack;
   color: $primary-color;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .App {
